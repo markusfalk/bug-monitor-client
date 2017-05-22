@@ -1,5 +1,5 @@
 {
-  "name": "bug-monitor-client-side",
+  "name": "bug-monitor-client",
   "version": "0.3.0",
   "description": "Client side script for tracking JS errors",
   "main": "dist/bug-monitor.client.js",
