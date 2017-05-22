@@ -4,7 +4,7 @@
   "description": "Client side script for tracking JS errors",
   "main": "dist/bug-monitor.client.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "node_modules/eslint/bin/eslint.js src/bug-monitor-client.js",
     "uglify": "node_modules/uglify-js/bin/uglifyjs --compress --mangle --output ./dist/bug-monitor.client.js ./src/bug-monitor-client.js --verbose",
     "build": "npm run uglify",
     "serve": "node_modules/serve/bin/serve.js .",
