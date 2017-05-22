@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TestCase</title>
+    <script src="../src/bug-monitor-client.js"></script>
+    <script>
+
+      setBugMonitorClientConfigDefaultValue('bugMonitorUrl', 'http://192.168.178.37:5000');
+
+      setBugMonitorClientConfigDefaultValue('customField1', 'customValie 1');
+
+      setBugMonitorClientConfigDefaultValue('customField2', ['foo', 'bar']);
+
+      // setBugMonitorClientConfigDefaultValue('customField3', {'foo', 'bar'});
+
+    </script>
+  </head>
+  <body>
+    <h1>Errors</h1>
+    <ul>
+      <li><button onclick="errFunction();">bar is undefined</button></li>
+    </ul>
+
+    <script>
+      function errFunction() {
+        bar.foo = 'foobar'; // bar is undefined
+      };
+    </script>
+  </body>
+</html>
