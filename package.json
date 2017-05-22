@@ -5,8 +5,12 @@
   "main": "dist/bug-monitor.client.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "node_modules/uglify-js/bin/uglifyjs --compress --mangle --output ./dist/bug-monitor.client.js ./src/bug-monitor-client.js --verbose",
-    "serve": "node_modules/serve/bin/serve.js ."
+    "uglify": "node_modules/uglify-js/bin/uglifyjs --compress --mangle --output ./dist/bug-monitor.client.js ./src/bug-monitor-client.js --verbose",
+    "build": "npm run uglify",
+    "serve": "node_modules/serve/bin/serve.js .",
+    "preversion": "npm run test",
+    "version": "npm run build && git add -A dist",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
