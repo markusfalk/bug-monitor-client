@@ -27,7 +27,9 @@
 
   sendErrorToBugMonitor = function(config, errorObject) {
 
-    var payload = {};
+    var
+    payload = {},
+    sorry = 'no data';
 
     payload.customFields = window.bugMonitorClientConfigDefault.customFields;
 
@@ -36,7 +38,7 @@
     payload.column = errorObject.column;
     payload.line = errorObject.line;
     payload.message = errorObject.message;
-    payload.stack = errorObject.errorObject.stack;
+    payload.stack = errorObject.errorObject ? errorObject.errorObject.stack : sorry;
 
     // navigator
     payload.appCodeName = navigator.appCodeName;
