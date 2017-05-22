@@ -5,7 +5,7 @@
   @license AGPL-3.0
 */
 
-(function(window, navigator, undefined) {
+(function(window, navigator) {
 
   'strict mode';
 
@@ -25,7 +25,7 @@
 
   }
 
-  sendErrorToBugMonitor = function(config, errorObject) {
+  var sendErrorToBugMonitor = function(config, errorObject) {
 
     var
     payload = {},
@@ -63,9 +63,7 @@
 
     var string = message.toLowerCase();
 
-    if (string.indexOf('script error') > -1) {
-      console.info('Script Error: See Browser Console for Detail');
-    } else {
+    if (!string.indexOf('script error') > -1) {
 
       var error = {
         'message': message,
