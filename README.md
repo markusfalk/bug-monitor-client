@@ -1,7 +1,5 @@
 # Bug Monitor Client
 
-ALPHA - NOT READY FOR PRODUCTION.
-
 ## Minimum Setup
 ```html
 <script src="../src/bug-monitor-client.js"></script>
