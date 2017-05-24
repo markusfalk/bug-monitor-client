@@ -9,27 +9,39 @@
 
   'strict mode';
 
-  window.bugMonitorClientConfigDefault = {
+  // reference global for better minification
+  var bmccd = window.bugMonitorClientConfigDefault;
+
+  // set default values
+  bmccd = {
     bugMonitorUrl: '',
     customFields: {},
     httpMethod: 'POST'
   };
 
+  /**
+   * sets values to the global config object
+   * @public
+   */
   window.setBugMonitorClientConfigDefaultValue = function(property, value) {
 
-     if(window.bugMonitorClientConfigDefault.hasOwnProperty(property)) {
-       window.bugMonitorClientConfigDefault[property] = value;
+     if(bmccd.hasOwnProperty(property)) {
+       bmccd[property] = value;
      } else {
-       window.bugMonitorClientConfigDefault.customFields[property] = value;
+       bmccd.customFields[property] = value;
      }
 
   }
 
+  /**
+   * Creates payload and sends it to the endpoint
+   * @private
+   */
   var sendErrorToBugMonitor = function(config, error) {
 
     var payload = {};
 
-    payload.customFields = window.bugMonitorClientConfigDefault.customFields;
+    payload.customFields = bmccd.customFields;
 
     // error
     payload.url = error.url;
@@ -54,12 +66,16 @@
     payload.innerWidth = window.innerWidth;
 
     var xhr = new XMLHttpRequest();
-    xhr.open(window.bugMonitorClientConfigDefault.httpMethod, window.bugMonitorClientConfigDefault.bugMonitorUrl, true);
+    xhr.open(bmccd.httpMethod, bmccd.bugMonitorUrl, true);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(JSON.stringify(payload));
 
   }
 
+  /**
+   * Listener-function called by the browser 'onerror'
+   * @private
+   */
   window.onerror = function(message, url, lineNumber, columnNumber, errorObject) {
 
     var string = message.toLowerCase();
@@ -74,12 +90,11 @@
         'errorObject': errorObject
       };
 
-      sendErrorToBugMonitor(window.bugMonitorClientConfigDefault, error);
+      sendErrorToBugMonitor(bmccd, error);
 
     }
 
     return false
   }
-
 
 }(window, navigator));
