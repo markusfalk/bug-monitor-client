@@ -25,20 +25,20 @@
 
   }
 
-  var sendErrorToBugMonitor = function(config, errorObject) {
+  var sendErrorToBugMonitor = function(config, error) {
 
     var payload = {};
 
     payload.customFields = window.bugMonitorClientConfigDefault.customFields;
 
     // error
-    payload.url = errorObject.url;
-    payload.column = errorObject.column;
-    payload.line = errorObject.line;
-    payload.message = errorObject.message;
+    payload.url = error.url;
+    payload.column = error.column;
+    payload.line = error.line;
+    payload.message = error.message;
 
-    if(errorObject.errorObject) {
-      payload.stack = errorObject.errorObject.stack;
+    if(error.errorObject) {
+      payload.stack = error.errorObject.stack;
     }
 
     // navigator
