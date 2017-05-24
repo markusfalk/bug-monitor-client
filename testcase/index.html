@@ -6,13 +6,17 @@
     <script src="../src/bug-monitor-client.js"></script>
     <script>
 
-      setBugMonitorClientConfigDefaultValue('bugMonitorUrl', 'http://192.168.178.37:5000');
+      setBugMonitorClientConfigDefaultValue('bugMonitorUrl', 'http://localhost:5000');
 
-      setBugMonitorClientConfigDefaultValue('customField1', 'customValue 1');
+      setBugMonitorClientConfigDefaultValue('custom field: string', 'String');
 
-      setBugMonitorClientConfigDefaultValue('customField2', ['foo', 'bar']);
+      setBugMonitorClientConfigDefaultValue('custom field: array', ['foo', 'bar']);
 
-      // setBugMonitorClientConfigDefaultValue('customField3', {'foo', 'bar'});
+      setBugMonitorClientConfigDefaultValue('custom field: object', {'foo': 'bar', 'xyz': 123});
+
+      setBugMonitorClientConfigDefaultValue('custom field: boolean', true);
+
+      setBugMonitorClientConfigDefaultValue('custom field: number', 123);
 
     </script>
   </head>
