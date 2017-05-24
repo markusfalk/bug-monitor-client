@@ -5,7 +5,7 @@
   "main": "dist/bug-monitor.client.js",
   "scripts": {
     "test": "node_modules/eslint/bin/eslint.js src/bug-monitor-client.js",
-    "uglify": "node_modules/uglify-js/bin/uglifyjs --compress --mangle --output ./dist/bug-monitor.client.js ./src/bug-monitor-client.js --verbose",
+    "uglify": "node_modules/uglify-js/bin/uglifyjs --compress --mangle --screw-ie8 --comments --stats --output  ./dist/bug-monitor.client.js ./src/bug-monitor-client.js --verbose",
     "build": "npm run uglify",
     "serve": "node_modules/serve/bin/serve.js .",
     "preversion": "npm run test",
