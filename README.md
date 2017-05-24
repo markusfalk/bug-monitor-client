@@ -4,7 +4,7 @@
 ```html
 <script src="../src/bug-monitor-client.js"></script>
 <script>
-  setBugMonitorClientConfigDefaultValue('bugMonitorUrl', 'http://192.168.178.37:5000');
+  setBugMonitorClientConfigDefaultValue('bugMonitorUrl', 'https://url-to-your-local-bug-monitor.io');
 </script>
 ```
 
@@ -20,6 +20,13 @@
 
 ```javascript
 setBugMonitorClientConfigDefaultValue('property', 'value');
+```
+
+#### Example
+
+```javascript
+setBugMonitorClientConfigDefaultValue('httpMethod', 'GET'); // default 'POST'
+setBugMonitorClientConfigDefaultValue('httpMethod', 'GET');
 ```
 
 ## Sent Data
@@ -68,4 +75,14 @@ setBugMonitorClientConfigDefaultValue('custom field: number', 123);
 
 ## Browser Support
 
-to be defined!
+### Desktop
+
+* Chrome
+* Edge
+* Firefox
+* Internet Explorer >= 9
+
+### Mobile
+
+* Android
+* iOS
