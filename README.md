@@ -49,7 +49,21 @@ Data that will be sent to the collecting endpoint:
 Send your own data with custom fields:
 
 ```javascript
-setBugMonitorClientConfigDefaultValue('customProperty', 'customValue');
+setBugMonitorClientConfigDefaultValue('customProperty', customValue);
+```
+
+#### Examples
+
+```javascript
+setBugMonitorClientConfigDefaultValue('custom field: string', 'String');
+
+setBugMonitorClientConfigDefaultValue('custom field: array', ['foo', 'bar']);
+
+setBugMonitorClientConfigDefaultValue('custom field: object', {'foo': 'bar', 'xyz': 123});
+
+setBugMonitorClientConfigDefaultValue('custom field: boolean', true);
+
+setBugMonitorClientConfigDefaultValue('custom field: number', 123);
 ```
 
 ## Browser Support
