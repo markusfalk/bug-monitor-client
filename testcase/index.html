@@ -2,8 +2,8 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>TestCase</title>
-    <script src="../dist/bug-monitor-client.js"></script>
+    <title>TestCase - bug-monitor</title>
+    <script src="/dist/bug-monitor.client.js"></script>
     <script>
 
       setBugMonitorClientConfigDefaultValue('bugMonitorUrl', 'http://localhost:5000');
@@ -21,15 +21,39 @@
     </script>
   </head>
   <body>
-    <h1>Errors</h1>
-    <ul>
-      <li><button onclick="errFunction();">bar is undefined</button></li>
-    </ul>
 
-    <script>
-      function errFunction() {
-        bar.foo = 'foobar'; // bar is undefined
-      };
-    </script>
+    <h1>Errors</h1>
+
+    <section>
+      <button onclick="undefinedError();">bar is undefined</button>
+      <script>
+        function undefinedError() {
+          bar.foo = 'foobar'; // bar is undefined
+        };
+      </script>
+    </section>
+
+    <section>
+      <button onclick="throwNewError();">throw new Error()</button>
+      <script>
+        function throwNewError() {
+          try {
+            throw new Error('Whoops!');
+          } catch (e) {
+            console.log(e.name + ': ' + e.message);
+          }
+        };
+      </script>
+    </section>
+
+    <section>
+      <button onclick="throwError();">throw</button>
+      <script>
+        function throwError() {
+          throw 'Whoops!';
+        };
+      </script>
+    </section>
+
   </body>
 </html>
