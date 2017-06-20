@@ -25,8 +25,8 @@ setBugMonitorClientConfigDefaultValue('property', 'value');
 #### Example
 
 ```javascript
-setBugMonitorClientConfigDefaultValue('httpMethod', 'GET'); // default 'POST'
-setBugMonitorClientConfigDefaultValue('httpMethod', 'GET');
+// default 'POST'
+setBugMonitorClientConfigDefaultValue('httpMethod', 'GET'); 
 ```
 
 ## Sent Data
