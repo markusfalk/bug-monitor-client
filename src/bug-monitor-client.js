@@ -10,10 +10,10 @@
   'strict mode';
 
   // reference global for better minification
-  var bmccd = window.bugMonitorClientConfigDefault;
+  var bugMonitorClientConfigDefault = window.bugMonitorClientConfigDefault;
 
   // set default values
-  bmccd = {
+  bugMonitorClientConfigDefault = {
     bugMonitorUrl: '',
     customFields: {},
     httpMethod: 'POST'
@@ -25,10 +25,10 @@
    */
   window.setBugMonitorClientConfigDefaultValue = function(property, value) {
 
-     if(bmccd.hasOwnProperty(property)) {
-       bmccd[property] = value;
+     if(bugMonitorClientConfigDefault.hasOwnProperty(property)) {
+       bugMonitorClientConfigDefault[property] = value;
      } else {
-       bmccd.customFields[property] = value;
+       bugMonitorClientConfigDefault.customFields[property] = value;
      }
 
   }
@@ -41,32 +41,28 @@
 
     var payload = {};
 
-    payload.customFields = bmccd.customFields;
+    payload.customFields = bugMonitorClientConfigDefault.customFields;
 
     // error
-    payload.url = error.url;
     payload.column = error.column;
     payload.line = error.line;
     payload.message = error.message;
+    payload.url = error.url;
 
     if(error.errorObject) {
       payload.stack = error.errorObject.stack;
     }
 
     // navigator
-    payload.appCodeName = navigator.appCodeName;
-    payload.appVersion = navigator.appVersion;
     payload.language = navigator.language;
     payload.userAgent = navigator.userAgent;
-    payload.userAgent= navigator.userAgent;
-    payload.userAgent= navigator.userAgent;
 
     // window
     payload.innerHeight = window.innerHeight;
     payload.innerWidth = window.innerWidth;
 
     var xhr = new XMLHttpRequest();
-    xhr.open(bmccd.httpMethod, bmccd.bugMonitorUrl, true);
+    xhr.open(bugMonitorClientConfigDefault.httpMethod, bugMonitorClientConfigDefault.bugMonitorUrl, true);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.send(JSON.stringify(payload));
 
@@ -90,7 +86,7 @@
         'errorObject': errorObject
       };
 
-      sendErrorToBugMonitor(bmccd, error);
+      sendErrorToBugMonitor(bugMonitorClientConfigDefault, error);
 
     }
 

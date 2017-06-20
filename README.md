@@ -1,18 +1,26 @@
 # Bug Monitor Client
 
+## Install
+
+```shell
+npm i bug-monitor-client
+```
+
 ## Minimum Setup
 ```html
-<script src="../src/bug-monitor-client.js"></script>
+<script src="bug-monitor-client.js"></script>
 <script>
   setBugMonitorClientConfigDefaultValue('bugMonitorUrl', 'https://url-to-your-local-bug-monitor.io');
 </script>
 ```
 
+This setup will load the `bug-monitor-client.js` and then set it up with the URL the data is sent to.
+
 ## Options
 
 | Property  | Default | Type | Description |
 | -------- | -------- | ---- | ----------- |
-| bugMonitorUrl | '' | String | URL the script is sending to |
+| bugMonitorUrl | "" | String | URL the script is sending to |
 | customFields  | {} | String or Array | A custom field that will be sent with the request |
 | httpMethod | 'POST' | String | HTTP method |
 
@@ -26,17 +34,15 @@ setBugMonitorClientConfigDefaultValue('property', 'value');
 
 ```javascript
 // default 'POST'
-setBugMonitorClientConfigDefaultValue('httpMethod', 'GET'); 
+setBugMonitorClientConfigDefaultValue('httpMethod', 'GET');
 ```
 
 ## Sent Data
 
-Data that will be sent to the collecting endpoint:
+Data that will be sent to the collecting endpoint when an error in your JS occurs:
 
 ```javascript
 {
-  'appCodeName': '',
-  'appVersion': '',
   'column': 1,
   'customFields': {},
   'innerHeight': 2,
@@ -44,7 +50,6 @@ Data that will be sent to the collecting endpoint:
   'language': '',
   'line': 4,
   'message': '',
-  'platform': '',
   'stack': '',
   'url': '',
   'userAgent': ''
