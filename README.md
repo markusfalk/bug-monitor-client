@@ -1,11 +1,5 @@
 # Bug Monitor Client
 
-## Install
-
-```shell
-npm i bug-monitor-client
-```
-
 ## Minimum Setup
 ```html
 <script src="bug-monitor-client.js"></script>
