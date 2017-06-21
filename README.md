@@ -15,7 +15,8 @@ This setup will load the `bug-monitor-client.js` and then set it up with the URL
 | Property  | Default | Type | Description |
 | -------- | -------- | ---- | ----------- |
 | bugMonitorUrl | "" | String | URL the script is sending to |
-| customFields  | {} | String or Array | A custom field that will be sent with the request |
+| customFields  | {} | any | A custom field that will be sent with the request |
+| disabled | false | Boolean | can be used to disable logging in development environments  |
 | httpMethod | 'POST' | String | HTTP method |
 
 ### How to use
@@ -29,6 +30,10 @@ setBugMonitorClientConfigDefaultValue('property', 'value');
 ```javascript
 // default 'POST'
 setBugMonitorClientConfigDefaultValue('httpMethod', 'GET');
+
+// disable logging while developing
+var isDevEnvironment = true; // somehwere in your code
+setBugMonitorClientConfigDefaultValue('disabled', isDevEnvironment);
 ```
 
 ## Sent Data
@@ -80,8 +85,9 @@ setBugMonitorClientConfigDefaultValue('custom field: number', 123);
 * Edge
 * Firefox
 * Internet Explorer >= 9
+* Safari
 
 ### Mobile
 
-* Android
-* iOS
+* Android Chrome 6
+* iOS Safari 4
