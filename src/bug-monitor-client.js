@@ -12,32 +12,39 @@
   // reference global for better minification
   var bugMonitorClientConfigDefault = window.bugMonitorClientConfigDefault;
 
-  // set default values
-  bugMonitorClientConfigDefault = {
-    bugMonitorUrl: '',
-    customFields: {},
-    httpMethod: 'POST'
-  };
+  /**
+  * provide default values for known options
+  * @private
+  */
+  var _setupDefaults = function() {
+    // set default values
+    bugMonitorClientConfigDefault = {
+      bugMonitorUrl: '',
+      customFields: {},
+      httpMethod: 'POST',
+      disabled: false
+    };
+  }
 
   /**
-   * sets values to the global config object
-   * @public
-   */
-  window.setBugMonitorClientConfigDefaultValue = function(property, value) {
-
-     if(bugMonitorClientConfigDefault.hasOwnProperty(property)) {
-       bugMonitorClientConfigDefault[property] = value;
-     } else {
-       bugMonitorClientConfigDefault.customFields[property] = value;
-     }
-
-  }
+  * sets values to the global config object
+  * @private
+  */
+  var _setCustomOptions = function() {
+    window.setBugMonitorClientConfigDefaultValue = function(property, value) {
+      if(bugMonitorClientConfigDefault.hasOwnProperty(property)) {
+        bugMonitorClientConfigDefault[property] = value;
+      } else {
+        bugMonitorClientConfigDefault.customFields[property] = value;
+      }
+    }
+  };
 
   /**
    * Creates payload and sends it to the endpoint
    * @private
    */
-  var sendErrorToBugMonitor = function(config, error) {
+  var _sendErrorToBugMonitor = function(config, error) {
 
     var payload = {};
 
@@ -69,28 +76,40 @@
   }
 
   /**
-   * Listener-function called by the browser 'onerror'
+   * Sets Listener-function called by the browser 'onerror'
    * @private
    */
-  window.onerror = function(message, url, lineNumber, columnNumber, errorObject) {
+  var _setErrorListener = function() {
+    window.onerror = function(message, url, lineNumber, columnNumber, errorObject) {
 
-    var string = message.toLowerCase();
+      var string = message.toLowerCase();
 
-    if (!string.indexOf('script error') > -1) {
+      if (!string.indexOf('script error') > -1) {
 
-      var error = {
-        'message': message,
-        'url': url,
-        'line': lineNumber,
-        'column': columnNumber,
-        'errorObject': errorObject
-      };
+        var error = {
+          'message': message,
+          'url': url,
+          'line': lineNumber,
+          'column': columnNumber,
+          'errorObject': errorObject
+        };
 
-      sendErrorToBugMonitor(bugMonitorClientConfigDefault, error);
+        _sendErrorToBugMonitor(bugMonitorClientConfigDefault, error);
 
+      }
+
+      return false
     }
+  };
 
-    return false
-  }
+  // init the whole thing
+  _setupDefaults();
+  _setCustomOptions();
+
+  document.addEventListener('DOMContentLoaded', function() {
+    if(!bugMonitorClientConfigDefault.disabled) {
+      _setErrorListener();
+    }
+  });
 
 }(window, navigator));
