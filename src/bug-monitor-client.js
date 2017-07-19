@@ -46,8 +46,6 @@
    */
   var _sendErrorToBugMonitor = function(config, error) {
 
-    debugger;
-
     var payload = {};
 
     payload.customFields = bugMonitorClientConfigDefault.customFields;
