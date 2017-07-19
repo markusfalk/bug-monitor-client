@@ -46,6 +46,8 @@
    */
   var _sendErrorToBugMonitor = function(config, error) {
 
+    debugger;
+
     var payload = {};
 
     payload.customFields = bugMonitorClientConfigDefault.customFields;
@@ -98,16 +100,45 @@
 
       }
 
-      return false
+      return false;
     }
   };
+
+  /**
+   * Go thru set options and validate minimum setup
+   * @private
+   */
+
+  var _validateSetup = function() {
+
+    var isValid = true;
+
+    try {
+      if(bugMonitorClientConfigDefault.bugMonitorUrl === '') {
+        throw new Error(
+          'No url set for bug-monitor-client! Add bugMonitorUrl option to your setup: ' +
+          'setBugMonitorClientConfigDefaultValue(\'bugMonitorUrl\', \'http:\/\/your-url.com\');'
+        );
+      }
+    } catch (err) {
+      console.error(err);
+    }
+
+    if (bugMonitorClientConfigDefault.disabled) {
+      console.info('The bug-monitor-client script has been disabled on this page.');
+      isValid = false;
+    }
+
+    return isValid;
+
+  }
 
   // init the whole thing
   _setupDefaults();
   _setCustomOptions();
 
   document.addEventListener('DOMContentLoaded', function() {
-    if(!bugMonitorClientConfigDefault.disabled) {
+    if(_validateSetup()) {
       _setErrorListener();
     }
   });

@@ -8,7 +8,7 @@
 
       setBugMonitorClientConfigDefaultValue('bugMonitorUrl', 'http://localhost:5000');
 
-      setBugMonitorClientConfigDefaultValue('disabled', true);
+      //setBugMonitorClientConfigDefaultValue('disabled', true);
 
       setBugMonitorClientConfigDefaultValue('custom_field_string', 'String');
 
@@ -40,7 +40,7 @@
       <script>
         function throwNewError() {
           try {
-            throw new Error('Whoops!');
+            throw new Error('throw new Error()');
           } catch (e) {
             console.log(e.name + ': ' + e.message);
           }
