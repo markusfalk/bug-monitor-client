@@ -4,10 +4,10 @@
   "description": "Client side script for tracking JS errors",
   "main": "dist/bug-monitor.client.js",
   "scripts": {
-    "test": "npx eslint src/bug-monitor-client",
-    "uglify": "npx uglifyjs --compress --mangle --screw-ie8 --source-map --comments --stats --wrap-iife --quotes=3 --output ./dist/bug-monitor.client.js ./src/bug-monitor-client.js --verbose",
+    "test": "eslint src/bug-monitor-client",
+    "uglify": "uglifyjs --compress --mangle --screw-ie8 --source-map --comments --stats --wrap-iife --quotes=3 --output ./dist/bug-monitor.client.js ./src/bug-monitor-client.js --verbose",
     "build": "npm run uglify",
-    "serve": "npx serve .",
+    "serve": "serve .",
     "watch": "node_modules/onchange/cli.js  './src/*.js' -- npm run build",
     "preversion": "npm run test",
     "version": "npm run build && git add -A dist",
@@ -30,5 +30,6 @@
     "onchange": "^3.2.1",
     "serve": "^5.1.5",
     "uglify-js": "^3.0.11"
-  }
+  },
+  "dependencies": {}
 }
