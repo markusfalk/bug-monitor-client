@@ -23,7 +23,8 @@
       customFields: {},
       disabled: false,
       httpMethod: 'POST',
-      timeout: 2000
+      timeout: 2000,
+      verbose: true
     };
   }
 
@@ -38,6 +39,20 @@
       } else {
         bugMonitorClientConfigDefault.customFields[property] = value;
       }
+    }
+  };
+
+  /**
+  * makes bug-monitor-client more or less verbose
+  * @private
+  */
+  var _log = function(type, message) {
+    if(type === 'info' && bugMonitorClientConfigDefault.verbose) {
+      console.info(message);
+    } else if (type === 'warn' && bugMonitorClientConfigDefault.verbose) {
+      console.warn(message);
+    } else if (type === 'error') {
+      console.error(message);
     }
   };
 
@@ -77,8 +92,23 @@
     xhr.timeout = bugMonitorClientConfigDefault.timeout;
     xhr.setRequestHeader('Content-type', 'application/json');
 
+    xhr.onload = function (response) {
+
+      switch (response.currentTarget.status) {
+        case  404:
+          _log('warn', 'The bug-monitor-client could not find your back-end! (' + response.currentTarget.status + ': ' + response.currentTarget.statusText + ')');
+          break;
+        case 200:
+          _log('info', 'The bug-monitor-client successfully reported an error to ' + bugMonitorClientConfigDefault.bugMonitorUrl);
+          break;
+        //default:
+
+      }
+
+    };
+
     xhr.ontimeout = function (err) {
-      console.warn('The bug-monitor back-end timed out. ' + err);
+      _log('warn', 'The bug-monitor back-end timed out. ' + err);
     };
 
     xhr.send(JSON.stringify(payload));
@@ -109,7 +139,6 @@
       }
 
       return false;
-
     }
   };
 
@@ -130,11 +159,11 @@
         );
       }
     } catch (err) {
-      console.error(err);
+      _log('error', err);
     }
 
     if (bugMonitorClientConfigDefault.disabled) {
-      console.info('The bug-monitor-client script has been disabled on this page.');
+      _log('info', 'The bug-monitor-client script has been disabled on this page.');
       isValid = false;
     }
 
