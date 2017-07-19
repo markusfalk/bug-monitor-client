@@ -6,10 +6,14 @@
     <script src="/dist/bug-monitor.client.js"></script>
     <script>
 
+      // internal options
       setBugMonitorClientConfigDefaultValue('bugMonitorUrl', 'http://localhost:5000');
+
+      setBugMonitorClientConfigDefaultValue('timeout', 5000);
 
       //setBugMonitorClientConfigDefaultValue('disabled', true);
 
+      // custom fields
       setBugMonitorClientConfigDefaultValue('custom_field_string', 'String');
 
       setBugMonitorClientConfigDefaultValue('custom_field_array', ['foo', 'bar']);

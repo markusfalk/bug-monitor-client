@@ -18,6 +18,7 @@ This setup will load the `bug-monitor-client.js` and then set it up with the URL
 | customFields  | {} | any | A custom field that will be sent with the request |
 | disabled | false | Boolean | can be used to disable logging in development environments  |
 | httpMethod | 'POST' | String | HTTP method |
+| timeout | 2000 | Number in milliseconds | This is a timeout for the xhr request to the back-end your sending to |
 
 ### How to use
 

@@ -21,8 +21,9 @@
     bugMonitorClientConfigDefault = {
       bugMonitorUrl: '',
       customFields: {},
+      disabled: false,
       httpMethod: 'POST',
-      disabled: false
+      timeout: 2000
     };
   }
 
@@ -69,8 +70,17 @@
     payload.innerWidth = window.innerWidth;
 
     var xhr = new XMLHttpRequest();
+
     xhr.open(bugMonitorClientConfigDefault.httpMethod, bugMonitorClientConfigDefault.bugMonitorUrl, true);
+
+    //options
+    xhr.timeout = bugMonitorClientConfigDefault.timeout;
     xhr.setRequestHeader('Content-type', 'application/json');
+
+    xhr.ontimeout = function (err) {
+      console.warn('The bug-monitor back-end timed out. ' + err);
+    };
+
     xhr.send(JSON.stringify(payload));
 
   }
@@ -99,6 +109,7 @@
       }
 
       return false;
+
     }
   };
 
