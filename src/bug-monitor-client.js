@@ -1,4 +1,4 @@
-/**
+/**!
   Bug Monitor Client
   @author: mail@markus-falk.com
   @url: https://github.com/markusfalk/bug-monitor
