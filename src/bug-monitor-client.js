@@ -1,7 +1,7 @@
 /**!
   Bug Monitor Client
   @author: mail@markus-falk.com
-  @url: https://github.com/markusfalk/bug-monitor
+  @url: https://github.com/markusfalk/bug-monitor-client/
   @license AGPL-3.0
 */
 
