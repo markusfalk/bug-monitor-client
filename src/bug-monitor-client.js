@@ -7,22 +7,13 @@
 
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
-        // AMD. Register as an anonymous module.
-        define(['dependency'], function (dependency) {
-            return (root.returnExportsGlobal = factory(dependency));
-        });
+      define([], factory);
     } else if (typeof module === 'object' && module.exports) {
-        // Node. Does not work with strict CommonJS, but
-        // only CommonJS-like environments that support module.exports,
-        // like Node.
-        module.exports = factory(require('dependency'));
+      module.exports = factory();
     } else {
-        // Browser globals
-        root.returnExportsGlobal = factory(root.dependency);
+      root.setBugMonitorClientConfigDefaultValue = factory();
     }
-}(this, function (dependency) {
-
-    console.log(this, window, navigator);
+}(this, function () {
 
     'strict mode';
 
@@ -49,15 +40,13 @@
     * sets values to the global config object
     * @private
     */
-    var _setCustomOptions = function() {
-      window.setBugMonitorClientConfigDefaultValue = function(property, value) {
-        if(bugMonitorClientConfigDefault.hasOwnProperty(property)) {
-          bugMonitorClientConfigDefault[property] = value;
-        } else {
-          bugMonitorClientConfigDefault.customFields[property] = value;
-        }
+    function setBugMonitorClientConfigDefaultValue (property, value) {
+      if(bugMonitorClientConfigDefault.hasOwnProperty(property)) {
+        bugMonitorClientConfigDefault[property] = value;
+      } else {
+        bugMonitorClientConfigDefault.customFields[property] = value;
       }
-    };
+    }
 
     /**
     * makes bug-monitor-client more or less verbose
@@ -190,7 +179,6 @@
 
     // init the whole thing
     _setupDefaults();
-    _setCustomOptions();
 
     document.addEventListener('DOMContentLoaded', function() {
       if(_validateSetup()) {
@@ -198,8 +186,6 @@
       }
     });
 
-    // Just return a value to define the module export.
-    // This example returns an object, but the module
-    // can return a function as the exported value.
-    return {};
+    return setBugMonitorClientConfigDefaultValue;
+
 }));
