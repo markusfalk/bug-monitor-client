@@ -6,9 +6,10 @@
   "scripts": {
     "test": "eslint src/bug-monitor-client",
     "uglify": "uglifyjs --compress --mangle --screw-ie8 --source-map --comments --stats --wrap-iife --quotes=3 --output ./dist/bug-monitor.client.js ./src/bug-monitor-client.js --verbose",
-    "build": "npm run uglify",
+    "types": "cp ./src/typings.d.ts ./dist/",
+    "build": "npm run uglify && npm run types",
     "serve": "serve .",
-    "watch": "node_modules/onchange/cli.js './src/*.js' -- npm run build",
+    "watch": "node_modules/onchange/cli.js './src/*.*' -- npm run build",
     "preversion": "npm run test",
     "version": "npm run build && git add -A dist",
     "postversion": "git push && git push --tags"
