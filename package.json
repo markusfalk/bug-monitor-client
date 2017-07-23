@@ -3,6 +3,7 @@
   "version": "1.2.0",
   "description": "Client side script for tracking JS errors",
   "main": "dist/bug-monitor.client.js",
+  "types": "dist/typings.d.ts",
   "scripts": {
     "test": "eslint src/bug-monitor-client",
     "uglify": "uglifyjs --compress --mangle --screw-ie8 --source-map --comments --stats --wrap-iife --quotes=3 --output ./dist/bug-monitor.client.js ./src/bug-monitor-client.js --verbose",
