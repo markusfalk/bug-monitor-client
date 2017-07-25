@@ -7,7 +7,7 @@
 
 (function (root, factory) {
     if (typeof define === 'function' && define.amd) {
-      define([], factory);
+      define('setBugMonitorClientConfigDefaultValue', [], factory);
     } else if (typeof module === 'object' && module.exports) {
       module.exports.setBugMonitorClientConfigDefaultValue = factory();
     } else {
