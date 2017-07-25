@@ -186,6 +186,8 @@
       }
     });
 
-    return setBugMonitorClientConfigDefaultValue;
+    return {
+      setBugMonitorClientConfigDefaultValue: setBugMonitorClientConfigDefaultValue
+    };
 
 }));
