@@ -1,0 +1,1 @@
+{"version":3,"file":"bug-monitor-client.d.ts","sourceRoot":"","sources":["../src/bug-monitor-client.ts"],"names":[],"mappings":"AAEA,OAAO,EAAE,MAAM,EAAE,MAAM,oBAAoB,CAAC;AAS5C,qBAAa,gBAAgB;IAE3B,OAAO,CAAC,sBAAsB,CAAS;gBAE3B,UAAU,EAAE,MAAM;IA6B9B,OAAO,CAAC,GAAG;IAaX,OAAO,CAAC,qBAAqB;IA2D7B,OAAO,CAAC,gBAAgB;IAkBxB,OAAO,CAAC,aAAa;CAwBtB"}
