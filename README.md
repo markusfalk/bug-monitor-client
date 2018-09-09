@@ -17,6 +17,7 @@ var bmc = new BugMonitorClient({
 | Property  | Default | Type | Description |
 | -------- | -------- | ---- | ----------- |
 | bugMonitorUrl* | "" | String | URL the script is sending to |
+| clientName* | "" | String | Name of the project |
 | customFields  | {} | any | A custom field that will be sent with the request |
 | disabled | false | Boolean | can be used to disable logging in development environments  |
 | httpMethod | 'POST' | String | HTTP method |

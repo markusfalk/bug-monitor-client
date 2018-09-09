@@ -15,6 +15,7 @@ var BugMonitorClient = (function () {
     function BugMonitorClient(userConfig) {
         var bugMonitorClientConfigDefaults = {
             bugMonitorUrl: '',
+            clientName: '',
             customFields: [],
             disabled: false,
             httpMethod: 'POST',
@@ -44,6 +45,7 @@ var BugMonitorClient = (function () {
     BugMonitorClient.prototype.sendErrorToBugMonitor = function (error) {
         var _this = this;
         var payload = {};
+        payload.clientName = this.bugMonitorClientConfig.clientName;
         payload.customFields = this.bugMonitorClientConfig.customFields;
         payload.column = error.column;
         payload.line = error.line;
@@ -95,8 +97,10 @@ var BugMonitorClient = (function () {
         var isValid = true;
         try {
             if (this.bugMonitorClientConfig.bugMonitorUrl === '') {
-                throw new Error('No url set for bug-monitor-client! Add bugMonitorUrl option to your setup: ' +
-                    'setBugMonitorClientConfigDefaultValue(\'bugMonitorUrl\', \'http:\/\/your-url.com\');');
+                throw new Error("bugMonitorUrl needs to be set for bug-monitor-client!");
+            }
+            if (this.bugMonitorClientConfig.clientName === '') {
+                throw new Error("clientName needs to be set for bug-monitor-client!");
             }
         }
         catch (err) {

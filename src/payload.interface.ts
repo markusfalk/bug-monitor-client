@@ -1,4 +1,5 @@
 export interface Payload {
+  clientName?: string;
   column?: number;
   customFields?: any;
   innerHeight?: number;

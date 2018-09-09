@@ -17,6 +17,7 @@ export class BugMonitorClient {
 
     const bugMonitorClientConfigDefaults: Config = {
       bugMonitorUrl: '',
+      clientName: '',
       customFields: [],
       disabled: false,
       httpMethod: 'POST',
@@ -27,7 +28,7 @@ export class BugMonitorClient {
     this.bugMonitorClientConfig = {...bugMonitorClientConfigDefaults, ...userConfig};
 
     const classInstance = this;
-    document.addEventListener('DOMContentLoaded', function() {
+    document.addEventListener('DOMContentLoaded', () => {
       if(classInstance.validateSetup()) {
         classInstance.setErrorListener();
       }
@@ -59,6 +60,7 @@ export class BugMonitorClient {
 
     let payload: Payload = {};
 
+    payload.clientName = this.bugMonitorClientConfig.clientName;
     payload.customFields = this.bugMonitorClientConfig.customFields;
 
     // error
@@ -132,15 +134,19 @@ export class BugMonitorClient {
   /**
    * Go thru set options and validate minimum setup
    */
-  private validateSetup () {
+  private validateSetup() {
 
     let isValid = true;
 
     try {
-      if(this.bugMonitorClientConfig.bugMonitorUrl === '') {
+      if (this.bugMonitorClientConfig.bugMonitorUrl === '') {
         throw new Error(
-          'No url set for bug-monitor-client! Add bugMonitorUrl option to your setup: ' +
-          'setBugMonitorClientConfigDefaultValue(\'bugMonitorUrl\', \'http:\/\/your-url.com\');'
+          `bugMonitorUrl needs to be set for bug-monitor-client!`
+        );
+      }
+      if (this.bugMonitorClientConfig.clientName === '') {
+        throw new Error(
+          `clientName needs to be set for bug-monitor-client!`
         );
       }
     } catch (err) {
