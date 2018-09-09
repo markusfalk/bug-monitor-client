@@ -7,4 +7,4 @@ export declare class BugMonitorClient {
     private setErrorListener;
     private validateSetup;
 }
-//# sourceMappingURL=bug-monitor-client.d.ts.map
+//# sourceMappingURL=bug-monitor.client.d.ts.map

@@ -115,4 +115,4 @@ var BugMonitorClient = (function () {
     return BugMonitorClient;
 }());
 exports.BugMonitorClient = BugMonitorClient;
-//# sourceMappingURL=bug-monitor-client.js.map
+//# sourceMappingURL=bug-monitor.client.js.map
