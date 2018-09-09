@@ -1,5 +1,9 @@
 # Bug Monitor Client
 
+This script will help you track your JS errors in production. 
+
+It is a commonJS module that tracks errors in your code and sends them to a url for you to collect.
+
 ## Minimum Setup
 
 ```javascript

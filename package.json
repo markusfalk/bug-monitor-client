@@ -4,14 +4,18 @@
   "description": "Client side script for tracking JS errors",
   "main": "dist/bug-monitor-client.js",
   "scripts": {
-    "uglify": "uglifyjs --compress --mangle --screw-ie8 --source-map --comments --stats --wrap-iife --quotes=3 --output ./dist/bug-monitor.client.js ./src/bug-monitor-client.js --verbose",
-    "serve": "serve .",
     "tsc": "tsc",
     "watch": "tsc -w",
-    "preversion": "npm run test",
     "version": "npm run build && git add -A dist",
     "postversion": "git push && git push --tags"
   },
+  "keywords": [
+    "quality assurance",
+    "error",
+    "tracking",
+    "monitoring",
+    "javascript"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/markusfalk/bug-monitor-client.git"
