@@ -34,6 +34,7 @@ Data that will be sent to the collecting endpoint when an error in your JS occur
 
 ```javascript
 {
+  'clientName': '',
   'column': 1,
   'customFields': {},
   'innerHeight': 2,
