@@ -4,7 +4,7 @@ export interface Config {
   clientName: string;
   customFields?: CustomField[];
   disabled?: boolean;
-  httpMethod: string;
-  timeout: number;
+  httpMethod?: string;
+  timeout?: number;
   verbose?: boolean;
 }
