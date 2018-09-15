@@ -16,7 +16,7 @@ var BugMonitorClient = (function () {
         var bugMonitorClientConfigDefaults = {
             bugMonitorUrl: '',
             clientName: '',
-            customFields: [],
+            customFields: {},
             disabled: false,
             httpMethod: 'POST',
             timeout: 2000,

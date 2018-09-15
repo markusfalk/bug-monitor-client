@@ -18,7 +18,7 @@ export class BugMonitorClient {
     const bugMonitorClientConfigDefaults: Config = {
       bugMonitorUrl: '',
       clientName: '',
-      customFields: [],
+      customFields: {},
       disabled: false,
       httpMethod: 'POST',
       timeout: 2000,
