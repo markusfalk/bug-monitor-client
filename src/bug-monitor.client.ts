@@ -66,7 +66,7 @@ export class BugMonitorClient {
     // error
     payload.column = error.column;
     payload.line = error.line;
-    payload.url = error.url;
+    payload.filename = error.filename;
 
     if (typeof error.message === 'string') {
       payload.message = error.message;
@@ -121,7 +121,7 @@ export class BugMonitorClient {
     window.addEventListener('error', (event) => {
       let error: BugClientError = {
         message: event.message,
-        url: event.filename,
+        filename: event.filename,
         line: event.lineno,
         column: event.colno,
         errorObject: event.error

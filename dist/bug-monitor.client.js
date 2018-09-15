@@ -49,7 +49,7 @@ var BugMonitorClient = (function () {
         payload.customFields = this.bugMonitorClientConfig.customFields;
         payload.column = error.column;
         payload.line = error.line;
-        payload.url = error.url;
+        payload.filename = error.filename;
         if (typeof error.message === 'string') {
             payload.message = error.message;
         }
@@ -84,7 +84,7 @@ var BugMonitorClient = (function () {
         window.addEventListener('error', function (event) {
             var error = {
                 message: event.message,
-                url: event.filename,
+                filename: event.filename,
                 line: event.lineno,
                 column: event.colno,
                 errorObject: event.error
