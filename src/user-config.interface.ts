@@ -1,4 +1,4 @@
-import { CustomField } from "./custom-field.interface";
+// import { CustomField } from "./custom-field.interface";
 
 export interface UserConfig {
 
@@ -22,12 +22,13 @@ export interface UserConfig {
   /**
    * An object that cann be filled with custom properties
    * that will then be sent to the back-end.
+   * @see https://github.com/markusfalk/bug-monitor-client/issues/23
    *
-   * @type {CustomField}
-   * @default null
+   * @type {any}
+   * @default undefined
    * @memberof Config
    */
-  customFields?: CustomField | null;
+  customFields?: any;
 
   /**
    * Invalidates the setup.

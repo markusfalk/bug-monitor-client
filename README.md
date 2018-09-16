@@ -41,7 +41,6 @@ Data that will be sent to the collecting endpoint when an error in your JS occur
   'filename': '',
   'innerHeight': 2,
   'innerWidth': 3,
-  'language: '',
   'language': '',
   'line': 4,
   'message': '',
