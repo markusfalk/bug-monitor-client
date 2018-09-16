@@ -8,7 +8,7 @@ export interface Payload {
     line?: number;
     message?: string;
     stack?: string;
-    url?: string;
+    filename?: string;
     userAgent?: string;
 }
 //# sourceMappingURL=payload.interface.d.ts.map

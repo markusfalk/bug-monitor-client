@@ -16,7 +16,7 @@ var BugMonitorClient = (function () {
         var bugMonitorClientConfigDefaults = {
             bugMonitorUrl: '',
             clientName: '',
-            customFields: {},
+            customFields: null,
             disabled: false,
             httpMethod: 'POST',
             timeout: 2000,
@@ -31,13 +31,13 @@ var BugMonitorClient = (function () {
         });
     }
     BugMonitorClient.prototype.log = function (type, message) {
-        if (type === 'info' && this.bugMonitorClientConfig.verbose) {
+        if (console.info && type === 'info' && this.bugMonitorClientConfig.verbose) {
             console.info(message);
         }
-        else if (type === 'warn' && this.bugMonitorClientConfig.verbose) {
+        else if (console.warn && type === 'warn' && this.bugMonitorClientConfig.verbose) {
             console.warn(message);
         }
-        else if (type === 'error') {
+        else if (console.error && type === 'error') {
             console.error(message);
         }
     };
@@ -49,7 +49,7 @@ var BugMonitorClient = (function () {
         payload.customFields = this.bugMonitorClientConfig.customFields;
         payload.column = error.column;
         payload.line = error.line;
-        payload.url = error.url;
+        payload.filename = error.filename;
         if (typeof error.message === 'string') {
             payload.message = error.message;
         }
@@ -84,7 +84,7 @@ var BugMonitorClient = (function () {
         window.addEventListener('error', function (event) {
             var error = {
                 message: event.message,
-                url: event.filename,
+                filename: event.filename,
                 line: event.lineno,
                 column: event.colno,
                 errorObject: event.error
