@@ -1,6 +1,6 @@
 {
   "name": "bug-monitor-client",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "Client side script for tracking JS errors",
   "main": "./dist/bug-monitor.client.js",
   "types": "./dist/bug-monitor.client.d.ts",
