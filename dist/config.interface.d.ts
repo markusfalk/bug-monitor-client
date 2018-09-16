@@ -2,7 +2,7 @@ import { CustomField } from './custom-field.interface';
 export interface Config {
     bugMonitorUrl: string;
     clientName: string;
-    customFields?: CustomField[];
+    customFields?: CustomField | null;
     disabled?: boolean;
     httpMethod: string;
     timeout: number;
