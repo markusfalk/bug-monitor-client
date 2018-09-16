@@ -49,7 +49,7 @@ export interface Config {
    * @default 'POST'
    * @memberof Config
    */
-  httpMethod: string;
+  httpMethod?: string;
 
 
   /**
@@ -59,7 +59,7 @@ export interface Config {
    * @default 2000
    * @memberof Config
    */
-  timeout: number;
+  timeout?: number;
 
 
   /**
