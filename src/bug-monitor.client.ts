@@ -1,6 +1,7 @@
+import { DefaultConfig } from './../dist/default-config.interface.d';
 import { BugClientError } from './bugClientError.interface';
 import { Payload } from './payload.interface';
-import { Config } from './config.interface';
+import { UserConfig } from './user-config.interface';
 
 /**!
   * Bug Monitor Client
@@ -12,16 +13,16 @@ import { Config } from './config.interface';
 */
 export class BugMonitorClient {
 
-  private bugMonitorClientConfig: Config;
+  private bugMonitorClientConfig: DefaultConfig;
 
   /**
    * Creates an instance of BugMonitorClient.
-   * @param {Config} userConfig
+   * @param {UserConfig} userConfig
    * @memberof BugMonitorClient
    */
-  constructor(userConfig: Config) {
+  constructor(userConfig: UserConfig) {
 
-    const bugMonitorClientConfigDefaults: Config = {
+    const bugMonitorClientConfigDefaults: DefaultConfig = {
       bugMonitorUrl: '',
       clientName: '',
       customFields: null,
@@ -98,7 +99,11 @@ export class BugMonitorClient {
 
     // xhr
     let xhr = new XMLHttpRequest();
-    xhr.open(this.bugMonitorClientConfig.httpMethod, this.bugMonitorClientConfig.bugMonitorUrl, true);
+    xhr.open(
+      this.bugMonitorClientConfig.httpMethod,
+      this.bugMonitorClientConfig.bugMonitorUrl,
+      true
+    );
     xhr.timeout = this.bugMonitorClientConfig.timeout;
     xhr.setRequestHeader('Content-type', 'application/json');
 

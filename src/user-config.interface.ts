@@ -1,6 +1,6 @@
 import { CustomField } from "./custom-field.interface";
 
-export interface Config {
+export interface UserConfig {
 
   /**
    * URL to the collecting back-end.
