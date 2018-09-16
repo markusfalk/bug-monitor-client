@@ -1,7 +1,7 @@
-import { DefaultConfig } from './../dist/default-config.interface.d';
 import { BugClientError } from './bugClientError.interface';
 import { Payload } from './payload.interface';
 import { UserConfig } from './user-config.interface';
+import { DefaultConfig } from './default-config.interface';
 
 /**!
   * Bug Monitor Client
