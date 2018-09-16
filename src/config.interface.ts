@@ -10,7 +10,6 @@ export interface Config {
    */
   bugMonitorUrl: string;
 
-
   /**
    * An identifier that can be used by the back-end to
    * filter differenct clients sending errors.
@@ -19,7 +18,6 @@ export interface Config {
    * @memberof Config
    */
   clientName: string;
-
 
   /**
    * An object that cann be filled with custom properties
@@ -41,7 +39,6 @@ export interface Config {
    */
   disabled?: boolean;
 
-
   /**
    * Adjust the method of the XMLHttpRequest.
    *
@@ -51,7 +48,6 @@ export interface Config {
    */
   httpMethod?: string;
 
-
   /**
    * Adjust the timeout of the XMLHttpRequest.
    *
@@ -60,7 +56,6 @@ export interface Config {
    * @memberof Config
    */
   timeout?: number;
-
 
   /**
    * Adjust console output.
