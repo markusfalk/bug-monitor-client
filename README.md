@@ -20,13 +20,13 @@ var bmc = new BugMonitorClient({
 
 | Property  | Default | Type | Description |
 | -------- | -------- | ---- | ----------- |
-| bugMonitorUrl* | "" | String | URL the script is sending to |
-| clientName* | "" | String | Name of the project |
-| customFields  | {} | any | A custom field that will be sent with the request |
-| disabled | false | Boolean | can be used to disable logging in development environments  |
-| httpMethod | 'POST' | String | HTTP method |
-| timeout | 2000 | Number in milliseconds | This is a timeout for the xhr request to the back-end your sending to |
-| verbose | true | Boolean | Set this to false and bug-monitor-client will only report errors |
+| bugMonitorUrl* | "" | string | URL the script is sending to |
+| clientName* | "" | string | Name of the project |
+| customFields  | {} | string, [], boolean, object | A custom field that will be sent with the request |
+| disabled | false | boolean | can be used to disable logging in development environments  |
+| httpMethod | 'POST' | string | HTTP method |
+| timeout | 2000 | number in milliseconds | This is a timeout for the xhr request to the back-end your sending to |
+| verbose | true | boolean | Set this to false and bug-monitor-client will only report errors |
 
 ## Sent Data
 

@@ -1,1 +1,0 @@
-{"version":3,"file":"bugClientError.interface.d.ts","sourceRoot":"","sources":["../src/bugClientError.interface.ts"],"names":[],"mappings":"AAAA,MAAM,WAAW,cAAc;IAC7B,MAAM,CAAC,EAAE,MAAM,CAAC;IAChB,WAAW,CAAC,EAAE,KAAK,CAAC;IACpB,IAAI,CAAC,EAAE,MAAM,CAAC;IACd,OAAO,EAAE,MAAM,GAAG,KAAK,CAAC;IACxB,GAAG,CAAC,EAAE,MAAM,CAAC;CACd"}

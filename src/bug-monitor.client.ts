@@ -3,22 +3,28 @@ import { Payload } from './payload.interface';
 import { Config } from './config.interface';
 
 /**!
-Bug Monitor Client
-@author: mail@markus-falk.com
-@url: https://github.com/markusfalk/bug-monitor-client/
-@license AGPL-3.0
+  * Bug Monitor Client
+  * @author: mail@markus-falk.com
+  * @class BugMonitorClient
+  * @export
+  * @license AGPL-3.0
+  * @url: https://github.com/markusfalk/bug-monitor-client/
 */
-
 export class BugMonitorClient {
 
   private bugMonitorClientConfig: Config;
 
+  /**
+   * Creates an instance of BugMonitorClient.
+   * @param {Config} userConfig
+   * @memberof BugMonitorClient
+   */
   constructor(userConfig: Config) {
 
     const bugMonitorClientConfigDefaults: Config = {
       bugMonitorUrl: '',
       clientName: '',
-      customFields: [],
+      customFields: null,
       disabled: false,
       httpMethod: 'POST',
       timeout: 2000,
@@ -41,20 +47,26 @@ export class BugMonitorClient {
    * @private
    * @param {string} type
    * @param {string} message
+   * @returns {void}
    * @memberof BugMonitorClient
    */
-  private log(type: string, message: string) {
-    if(type === 'info' && this.bugMonitorClientConfig.verbose) {
+  private log(type: string, message: string): void {
+    if(console.info && type === 'info' && this.bugMonitorClientConfig.verbose) {
       console.info(message);
-    } else if (type === 'warn' && this.bugMonitorClientConfig.verbose) {
+    } else if (console.warn && type === 'warn' && this.bugMonitorClientConfig.verbose) {
       console.warn(message);
-    } else if (type === 'error') {
+    } else if (console.error && type === 'error') {
       console.error(message);
     }
   };
 
   /**
    * Creates payload and sends it to the endpoint
+   *
+   * @private
+   * @returns {void}
+   * @param {BugClientError} error
+   * @memberof BugMonitorClient
    */
   private sendErrorToBugMonitor(error: BugClientError): void {
 
@@ -66,7 +78,7 @@ export class BugMonitorClient {
     // error
     payload.column = error.column;
     payload.line = error.line;
-    payload.url = error.url;
+    payload.filename = error.filename;
 
     if (typeof error.message === 'string') {
       payload.message = error.message;
@@ -114,14 +126,18 @@ export class BugMonitorClient {
   }
 
   /**
-   * Sets Listener-function called by the browser 'onerror'
+   * Adds event listener to catch errors on window
+   *
+   * @private
+   * @returns {void}
+   * @memberof BugMonitorClient
    */
   private setErrorListener (): void {
 
     window.addEventListener('error', (event) => {
       let error: BugClientError = {
         message: event.message,
-        url: event.filename,
+        filename: event.filename,
         line: event.lineno,
         column: event.colno,
         errorObject: event.error
@@ -132,9 +148,13 @@ export class BugMonitorClient {
   };
 
   /**
-   * Go thru set options and validate minimum setup
+   * Validates the given setup by the user.
+   *
+   * @private
+   * @returns {boolean}
+   * @memberof BugMonitorClient
    */
-  private validateSetup() {
+  private validateSetup(): boolean {
 
     let isValid = true;
 
