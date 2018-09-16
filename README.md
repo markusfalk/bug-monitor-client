@@ -43,7 +43,7 @@ Data that will be sent to the collecting endpoint when an error in your JS occur
   'line': 4,
   'message': '',
   'stack': '',
-  'url': '',
+  'filename': '',
   'userAgent': ''
 }
 ```
