@@ -37,13 +37,14 @@ Data that will be sent to the collecting endpoint when an error in your JS occur
   'clientName': '',
   'column': 1,
   'customFields': {},
+  'filename': '',
   'innerHeight': 2,
   'innerWidth': 3,
+  'language: '',
   'language': '',
   'line': 4,
   'message': '',
   'stack': '',
-  'filename': '',
   'userAgent': ''
 }
 ```
@@ -54,12 +55,12 @@ Send your own data with custom fields:
 
 ```javascript
 bmc = new BugMonitorClient({
-  bugMonitorUrl: 'http://localhost:4200',
-  customFields: [
-    { 'string': 'foo' },
-    { 'object': {foobar: 'barfoo'} },
-    { 'array': [0, 1] }
-  ]
+  bugMonitorUrl: 'https://your-back-end.io',
+  customFields: {
+    'string': 'foo',
+    'object': {foobar: 'barfoo'},
+    'array': [0, 1]
+  }
 });
 ```
 
