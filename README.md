@@ -9,8 +9,9 @@ It is a commonJS module that tracks errors in your code and sends them to a url 
 ```javascript
 import { BugMonitorClient } from 'bug-monitor-client';
 
-var bmc = new BugMonitorClient({
-  bugMonitorUrl: 'https://url-to-your-local-bug-monitor.io'
+bmc: BugMonitorClient = new BugMonitorClient({
+  bugMonitorUrl: 'https://your-back-end.io',
+  clientName: 'your project name'
 });
 ```
 
@@ -56,6 +57,7 @@ Send your own data with custom fields:
 ```javascript
 bmc = new BugMonitorClient({
   bugMonitorUrl: 'https://your-back-end.io',
+  clientName: 'your project name',
   customFields: {
     'string': 'foo',
     'object': {foobar: 'barfoo'},
