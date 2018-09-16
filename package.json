@@ -1,13 +1,13 @@
 {
   "name": "bug-monitor-client",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Client side script for tracking JS errors",
   "main": "./dist/bug-monitor.client.js",
   "types": "./dist/bug-monitor.client.d.ts",
   "scripts": {
     "tsc": "tsc",
     "watch": "tsc -w",
-    "version": "npm run tsc && git add -A dist",
+    "version": "npm run tsc",
     "postversion": "git push && git push --tags"
   },
   "keywords": [
