@@ -1,4 +1,4 @@
-import { CustomField } from './custom-field.interface';
+import { CustomField } from "./custom-field.interface";
 
 export interface Config {
 
