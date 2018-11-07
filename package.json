@@ -5,6 +5,8 @@
   "main": "./dist/bug-monitor.client.js",
   "types": "./dist/bug-monitor.client.d.ts",
   "scripts": {
+    "test": "npm run lint",
+    "lint": "tslint --project tsconfig.json --config tslint.json --exclude ./dist/",
     "tsc": "tsc",
     "watch": "tsc -w",
     "version": "npm run tsc",
@@ -29,6 +31,7 @@
   "homepage": "https://github.com/markusfalk/bug-monitor-client#readme",
   "devDependencies": {
     "serve": "^10.0.0",
+    "tslint": "^5.11.0",
     "typescript": "^3.0.3"
   },
   "dependencies": {}

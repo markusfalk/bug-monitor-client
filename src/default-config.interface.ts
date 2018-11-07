@@ -1,4 +1,4 @@
-import { UserConfig } from "./user-config.interface";
+import { UserConfig } from './user-config.interface';
 
 export interface DefaultConfig extends UserConfig {
   httpMethod: string;

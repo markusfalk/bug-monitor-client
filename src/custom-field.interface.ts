@@ -1,4 +1,3 @@
 export interface CustomField {
-  [name: string]: string | [] | boolean | object
+  [name: string]: string | [] | boolean | object;
 }
-

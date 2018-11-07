@@ -1,16 +1,16 @@
 import { BugClientError } from './bugClientError.interface';
+import { DefaultConfig } from './default-config.interface';
 import { Payload } from './payload.interface';
 import { UserConfig } from './user-config.interface';
-import { DefaultConfig } from './default-config.interface';
 
-/**!
+ /**!
   * Bug Monitor Client
   * @author: mail@markus-falk.com
   * @class BugMonitorClient
   * @export
   * @license AGPL-3.0
   * @url: https://github.com/markusfalk/bug-monitor-client/
-*/
+  */
 export class BugMonitorClient {
 
   private bugMonitorClientConfig: DefaultConfig;
@@ -35,7 +35,7 @@ export class BugMonitorClient {
 
     const classInstance = this;
     document.addEventListener('DOMContentLoaded', () => {
-      if(classInstance.validateSetup()) {
+      if (classInstance.validateSetup()) {
         classInstance.setErrorListener();
       }
     });
@@ -51,14 +51,14 @@ export class BugMonitorClient {
    * @memberof BugMonitorClient
    */
   private log(type: string, message: string): void {
-    if(console.info && type === 'info' && this.bugMonitorClientConfig.verbose) {
+    if (console.info && type === 'info' && this.bugMonitorClientConfig.verbose) {
       console.info(message);
     } else if (console.warn && type === 'warn' && this.bugMonitorClientConfig.verbose) {
       console.warn(message);
     } else if (console.error && type === 'error') {
       console.error(message);
     }
-  };
+  }
 
   /**
    * Creates payload and sends it to the endpoint
@@ -70,7 +70,7 @@ export class BugMonitorClient {
    */
   private sendErrorToBugMonitor(error: BugClientError): void {
 
-    let payload: Payload = {};
+    const payload: Payload = {};
 
     payload.clientName = this.bugMonitorClientConfig.clientName;
     payload.customFields = this.bugMonitorClientConfig.customFields;
@@ -84,7 +84,7 @@ export class BugMonitorClient {
       payload.message = error.message;
     }
 
-    if(error.errorObject) {
+    if (error.errorObject) {
       payload.stack = error.errorObject.stack;
     }
 
@@ -97,7 +97,7 @@ export class BugMonitorClient {
     payload.innerWidth = window.innerWidth;
 
     // xhr
-    let xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     xhr.open(
       this.bugMonitorClientConfig.httpMethod,
       this.bugMonitorClientConfig.bugMonitorUrl,
@@ -110,13 +110,22 @@ export class BugMonitorClient {
 
       switch (response.currentTarget.status) {
         case  404:
-          this.log('warn', 'The bug-monitor-client could not find your back-end! (' + response.currentTarget.status + ': ' + response.currentTarget.statusText + ')');
+          this.log(
+            'warn',
+            `
+              The bug-monitor-client could not find your back-end!
+              (${response.currentTarget.status}: ${response.currentTarget.statusText})
+            `
+          );
           break;
         case 200:
-          this.log('info', 'The bug-monitor-client successfully reported an error to ' + this.bugMonitorClientConfig.bugMonitorUrl);
+          this.log(
+            'info',
+            `
+              The bug-monitor-client successfully reported an error to ${this.bugMonitorClientConfig.bugMonitorUrl}
+            `
+          );
           break;
-        //default:
-
       }
 
     };
@@ -136,22 +145,22 @@ export class BugMonitorClient {
    * @returns {void}
    * @memberof BugMonitorClient
    */
-  private setErrorListener (): void {
+  private setErrorListener(): void {
 
-    const _window = this.bugMonitorClientConfig.window || window;
+    const bugWindow = this.bugMonitorClientConfig.window || window;
 
-    _window.addEventListener('error', (event) => {
-      let error: BugClientError = {
-        message: event.message,
+    bugWindow.addEventListener('error', (event) => {
+      const error: BugClientError = {
+        column: event.colno,
+        errorObject: event.error,
         filename: event.filename,
         line: event.lineno,
-        column: event.colno,
-        errorObject: event.error
+        message: event.message
       };
       this.sendErrorToBugMonitor(error);
     });
 
-  };
+  }
 
   /**
    * Validates the given setup by the user.
