@@ -138,7 +138,9 @@ export class BugMonitorClient {
    */
   private setErrorListener (): void {
 
-    window.addEventListener('error', (event) => {
+    const _window = this.bugMonitorClientConfig.window || window;
+
+    _window.addEventListener('error', (event) => {
       let error: BugClientError = {
         message: event.message,
         filename: event.filename,

@@ -3,6 +3,14 @@
 export interface UserConfig {
 
   /**
+   * Use your own window object.
+   *
+   * @type {Window}
+   * @memberof UserConfig
+   */
+  window?: Window;
+
+  /**
    * URL to the collecting back-end.
    *
    * @type {string}
